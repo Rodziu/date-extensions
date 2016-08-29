@@ -32,5 +32,64 @@ describe('Date format', function(){
 			})(k);
 		}
 	}
-
+});
+describe('Date sub', function(){
+	var date;
+	beforeEach(function(){
+		date = new Date('2016-08-07 15:01:12');
+	});
+	it("Should substract 8 days from date", function(){
+		expect(date.sub(8, 'day').format('Y-m-d')).toBe('2016-07-30');
+	});
+	it("Should substract 2 weeks from date", function(){
+		expect(date.sub(2, 'week').format('Y-m-d')).toBe('2016-07-24');
+	});
+	it("Should substract 9 months from date", function(){
+		expect(date.sub(9, 'month').format('Y-m-d')).toBe('2015-11-07');
+	});
+	it("Should substract 1 year from date", function(){
+		expect(date.sub(1, 'year').format('Y-m-d')).toBe('2015-08-07');
+	});
+	it("Should substract 24 hours from date", function(){
+		expect(date.sub(24, 'hour').format('Y-m-d H:i:s')).toBe('2016-08-06 15:01:12');
+	});
+	it("Should substract 24 minutes from date", function(){
+		expect(date.sub(24, 'minute').format('Y-m-d H:i:s')).toBe('2016-08-07 14:37:12');
+	});
+	it("Should substract 24 seconds from date", function(){
+		expect(date.sub(24, 'second').format('Y-m-d H:i:s')).toBe('2016-08-07 15:00:48');
+	});
+	it("Should throw an exception", function(){
+		expect(function(){ date.sub(1, ''); }).toThrow(new Error("Invalid interval type"));
+	});
+});
+describe('Date add', function(){
+	var date;
+	beforeEach(function(){
+		date = new Date('2016-08-07 15:01:12');
+	});
+	it("Should add 8 days to date", function(){
+		expect(date.add(8, 'day').format('Y-m-d')).toBe('2016-08-15');
+	});
+	it("Should add 2 weeks to date", function(){
+		expect(date.add(2, 'week').format('Y-m-d')).toBe('2016-08-21');
+	});
+	it("Should add 9 months to date", function(){
+		expect(date.add(9, 'month').format('Y-m-d')).toBe('2017-05-07');
+	});
+	it("Should add 1 year to date", function(){
+		expect(date.add(1, 'year').format('Y-m-d')).toBe('2017-08-07');
+	});
+	it("Should add 24 hours to date", function(){
+		expect(date.add(24, 'hour').format('Y-m-d H:i:s')).toBe('2016-08-08 15:01:12');
+	});
+	it("Should add 24 minutes to date", function(){
+		expect(date.add(24, 'minute').format('Y-m-d H:i:s')).toBe('2016-08-07 15:25:12');
+	});
+	it("Should add 24 seconds to date", function(){
+		expect(date.add(24, 'second').format('Y-m-d H:i:s')).toBe('2016-08-07 15:01:36');
+	});
+	it("Should throw an exception", function(){
+		expect(function(){ date.sub(1, ''); }).toThrow(new Error("Invalid interval type"));
+	});
 });

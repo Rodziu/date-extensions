@@ -54,6 +54,53 @@ Date.prototype.getDateString = function(){
 	return this.getFullYear() + '-' + this.getRealMonth() + '-' + this.getRealDay();
 };
 /**
+ * Substract a number (amount) of `type` interval from date.
+ * @param {number} amount
+ * @param {string} type - day|week|month|year|hour|minute|second
+ * @returns {Date}
+ */
+Date.prototype.sub = function(amount, type){
+	if(typeof type == 'undefined'){
+		type = 'day';
+	}
+	switch(type){
+		case 'day':
+			this.setDate(this.getDate() - amount);
+			break;
+		case 'week':
+			this.setDate(this.getDate() - (amount * 7));
+			break;
+		case 'month':
+			this.setMonth(this.getMonth() - amount);
+			break;
+		case 'year':
+			this.setYear(this.getFullYear() - amount);
+			break;
+		case 'hour':
+			this.setHours(this.getHours() - amount);
+			break;
+		case 'minute':
+			this.setMinutes(this.getMinutes() - amount);
+			break;
+		case 'second':
+			this.setSeconds(this.getSeconds() - amount);
+			break;
+		default:
+			throw new Error("Invalid interval type");
+	}
+	return this;
+};
+/**
+ * Add a number (amount) of `type` interval from date.
+ * @param {number} amount
+ * @param {string} type - day|week|month|year|hour|minute|second
+ * @returns {Date}
+ */
+Date.prototype.add = function(amount, type){
+	this.sub(-amount, type);
+	return this;
+};
+/**
  * Format date by given char (PHP style formats).
  * @param format
  * @returns {*}
