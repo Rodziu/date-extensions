@@ -1,4 +1,9 @@
 /**
+ * JavaScript Date extensions.
+ * (c) 2016 Rodziu <mateusz.rohde@gmail.com>
+ * License: MIT
+ */
+/**
  * Number of microseconds in one day.
  * @type {number}
  */
