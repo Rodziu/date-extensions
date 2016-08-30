@@ -93,3 +93,10 @@ describe('Date add', function(){
 		expect(function(){ date.sub(1, ''); }).toThrow(new Error("Invalid interval type"));
 	});
 });
+describe("Date clone", function(){
+	it("Should create another instance of Date", function(){
+		var date = new Date();
+		expect(date.clone()).toEqual(date);
+		expect(date.clone() == date).toBeFalsy();
+	});
+});

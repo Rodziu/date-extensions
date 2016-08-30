@@ -24,6 +24,34 @@ Date.prototype.monthNames = ['Styczeń', 'Luty', 'Marzec', 'Kwiecień', 'Maj', '
  */
 Date.prototype.monthShortNames = ['Sty', 'Lut', 'Mar', 'Kwi', 'Maj', 'Cze', 'Lip', 'Sie', 'Wrz', 'Paź', 'Lis', 'Gru'];
 /**
+ * Get name of day.
+ * @returns {string}
+ */
+Date.prototype.getDayName = function(){
+	return this.dayNames[this.getDay()];
+};
+/**
+ * Get short name of day.
+ * @returns {string}
+ */
+Date.prototype.getDayShortName = function(){
+	return this.dayShortNames[this.getDay()];
+};
+/**
+ * Get name of month.
+ * @returns {string}
+ */
+Date.prototype.getMonthName = function(){
+	return this.monthNames[this.getMonth()];
+};
+/**
+ * Get short name of month.
+ * @returns {string}
+ */
+Date.prototype.getMonthShortName = function(){
+	return this.monthShortNames[this.getMonth()];
+};
+/**
  * Add leading zero if v is less than 10
  * @param v
  * @returns {string}
@@ -56,7 +84,7 @@ Date.prototype.getDateString = function(){
 /**
  * Substract a number (amount) of `type` interval from date.
  * @param {number} amount
- * @param {string} type - day|week|month|year|hour|minute|second
+ * @param {string} [type] - day|week|month|year|hour|minute|second
  * @returns {Date}
  */
 Date.prototype.sub = function(amount, type){
@@ -93,7 +121,7 @@ Date.prototype.sub = function(amount, type){
 /**
  * Add a number (amount) of `type` interval from date.
  * @param {number} amount
- * @param {string} type - day|week|month|year|hour|minute|second
+ * @param {string} [type] - day|week|month|year|hour|minute|second
  * @returns {Date}
  */
 Date.prototype.add = function(amount, type){
@@ -183,30 +211,9 @@ Date.prototype.format = function(format){
 	return result;
 };
 /**
- * Get name of day.
- * @returns {string}
+ * Return a new Date instance with same values as current Date.
+ * @returns {Date}
  */
-Date.prototype.getDayName = function(){
-	return this.dayNames[this.getDay()];
-};
-/**
- * Get short name of day.
- * @returns {string}
- */
-Date.prototype.getDayShortName = function(){
-	return this.dayShortNames[this.getDay()];
-};
-/**
- * Get name of month.
- * @returns {string}
- */
-Date.prototype.getMonthName = function(){
-	return this.monthNames[this.getMonth()];
-};
-/**
- * Get short name of month.
- * @returns {string}
- */
-Date.prototype.getMonthShortName = function(){
-	return this.monthShortNames[this.getMonth()];
+Date.prototype.clone = function(){
+	return new Date(this.getTime());
 };
