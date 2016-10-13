@@ -100,3 +100,13 @@ describe("Date clone", function(){
 		expect(date.clone() == date).toBeFalsy();
 	});
 });
+describe("IsValid", function(){
+	it("Should be a valid instance of Date", function(){
+		var date = new Date();
+		expect(date.isValid()).toBeTruthy();
+	});
+	it("Should be an invalid instance of Date", function(){
+		var date = new Date("123");
+		expect(date.isValid()).toBeFalsy();
+	})
+});

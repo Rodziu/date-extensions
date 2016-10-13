@@ -222,3 +222,10 @@ Date.prototype.format = function(format){
 Date.prototype.clone = function(){
 	return new Date(this.getTime());
 };
+/**
+ * Check if this instance of Date is valid.
+ * @returns {boolean}
+ */
+Date.prototype.isValid = function(){
+	return !isNaN(this.getTime());
+}
