@@ -1,6 +1,6 @@
 /**
  * JavaScript Date extensions.
- * (c) 2016 Rodziu <mateusz.rohde@gmail.com>
+ * (c) 2016-2018 Rodziu <mateusz.rohde@gmail.com>
  * License: MIT
  */
 /**
@@ -8,26 +8,30 @@
  * @type {number}
  */
 Date.prototype.oneDay = 1000 * 60 * 60 * 24;
-/**
- * PL day names.
- * @type {string[]}
- */
-Date.prototype.dayNames = ['Niedziela', 'Poniedziałek', 'Wtorek', 'Środa', 'Czwartek', 'Piątek', 'Sobota'];
-/**
- * PL short day names.
- * @type {string[]}
- */
-Date.prototype.dayShortNames = ['Nd', 'Pn', 'Wt', 'Śr', 'Czw', 'Pt', 'Sb'];
-/**
- * PL month names.
- * @type {string[]}
- */
-Date.prototype.monthNames = ['Styczeń', 'Luty', 'Marzec', 'Kwiecień', 'Maj', 'Czerwiec', 'Lipiec', 'Sierpień', 'Wrzesień', 'Październik', 'Listopad', 'Grudzień'];
-/**
- * PL month short names.
- * @type {string[]}
- */
-Date.prototype.monthShortNames = ['Sty', 'Lut', 'Mar', 'Kwi', 'Maj', 'Cze', 'Lip', 'Sie', 'Wrz', 'Paź', 'Lis', 'Gru'];
+if(typeof Date.prototype.dayNames === 'undefined'){
+	/**
+	 * @type {string[]}
+	 */
+	Date.prototype.dayNames = ['Niedziela', 'Poniedziałek', 'Wtorek', 'Środa', 'Czwartek', 'Piątek', 'Sobota'];
+}
+if(typeof Date.prototype.dayShortNames === 'undefined'){
+	/**
+	 * @type {string[]}
+	 */
+	Date.prototype.dayShortNames = ['Nd', 'Pn', 'Wt', 'Śr', 'Czw', 'Pt', 'Sb'];
+}
+if(typeof Date.prototype.monthNames === 'undefined'){
+	/**
+	 * @type {string[]}
+	 */
+	Date.prototype.monthNames = ['Styczeń', 'Luty', 'Marzec', 'Kwiecień', 'Maj', 'Czerwiec', 'Lipiec', 'Sierpień', 'Wrzesień', 'Październik', 'Listopad', 'Grudzień'];
+}
+if(typeof Date.prototype.monthShortNames === 'undefined'){
+	/**
+	 * @type {string[]}
+	 */
+	Date.prototype.monthShortNames = ['Sty', 'Lut', 'Mar', 'Kwi', 'Maj', 'Cze', 'Lip', 'Sie', 'Wrz', 'Paź', 'Lis', 'Gru'];
+}
 /**
  * Get name of day.
  * @returns {string}
@@ -87,13 +91,13 @@ Date.prototype.getDateString = function(){
 	return this.getFullYear() + '-' + this.getRealMonth() + '-' + this.getRealDay();
 };
 /**
- * Substract a number (amount) of `type` interval from date.
+ * Subtract a number (amount) of `type` interval from date.
  * @param {number} amount
  * @param {string} [type] - day|week|month|year|hour|minute|second
  * @returns {Date}
  */
 Date.prototype.sub = function(amount, type){
-	if(typeof type == 'undefined'){
+	if(typeof type === 'undefined'){
 		type = 'day';
 	}
 	switch(type){
@@ -107,7 +111,7 @@ Date.prototype.sub = function(amount, type){
 			this.setMonth(this.getMonth() - amount);
 			break;
 		case 'year':
-			this.setYear(this.getFullYear() - amount);
+			this.setFullYear(this.getFullYear() - amount);
 			break;
 		case 'hour':
 			this.setHours(this.getHours() - amount);
@@ -123,6 +127,7 @@ Date.prototype.sub = function(amount, type){
 	}
 	return this;
 };
+// noinspection JSUnusedGlobalSymbols
 /**
  * Add a number (amount) of `type` interval from date.
  * @param {number} amount
@@ -150,7 +155,7 @@ Date.prototype.formatOne = function(format){
 			return this.getDayName();
 		case 'N':
 			var d = this.getDay();
-			if(d == '0'){
+			if(d === 0){
 				return '7';
 			}
 			return d;
@@ -171,7 +176,7 @@ Date.prototype.formatOne = function(format){
 		case 't':
 			return (new Date(this.getFullYear(), this.getMonth() + 1, 0)).getRealDay();
 		case 'L':
-			return this.getFullYear() - (Math.floor(this.getFullYear() / 4) * 4) == 0 ? 1 : 0;
+			return this.getFullYear() - (Math.floor(this.getFullYear() / 4) * 4) === 0 ? 1 : 0;
 		case 'Y':
 			return this.getFullYear();
 		case 'y':
@@ -180,7 +185,7 @@ Date.prototype.formatOne = function(format){
 			var g = this.getHours();
 			if(g > 12){
 				return g - 12;
-			}else if(g == 0){
+			}else if(g === 0){
 				return 12;
 			}
 			return g;
@@ -228,4 +233,4 @@ Date.prototype.clone = function(){
  */
 Date.prototype.isValid = function(){
 	return !isNaN(this.getTime());
-}
+};

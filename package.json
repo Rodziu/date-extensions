@@ -1,18 +1,9 @@
 {
   "name": "date-extensions",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "JavaScript Date extensions.",
-  "main": "date-extensions.js",
-  "directories": {
-    "test": "tests"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@bitbucket.org/Rodziu/date-extensions.git"
-  },
+  "main": "dist/date-extensions.js",
+  "repository": "git+ssh://git@bitbucket.org/Rodziu/date-extensions.git",
   "author": "Mateusz Rohde <mateusz.rohde@gmail.com>",
   "license": "MIT",
   "homepage": "https://bitbucket.org/Rodziu/date-extensions#readme",
