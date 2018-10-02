@@ -140,7 +140,7 @@ Date.prototype.add = function(amount, type){
 };
 /**
  * Format date by given char (PHP style formats).
- * @param format
+ * @param {string} format
  * @returns {*}
  */
 Date.prototype.formatOne = function(format){
@@ -154,7 +154,7 @@ Date.prototype.formatOne = function(format){
 		case 'l':
 			return this.getDayName();
 		case 'N':
-			var d = this.getDay();
+			const d = this.getDay();
 			if(d === 0){
 				return '7';
 			}
@@ -162,7 +162,7 @@ Date.prototype.formatOne = function(format){
 		case 'w':
 			return this.getDay();
 		case 'z':
-			var ys = new Date(this.getFullYear() + '-01-01'),
+			const ys = new Date(this.getFullYear() + '-01-01'),
 				cmp = new Date(this.getDateString());
 			return ((cmp - ys) / this.oneDay);
 		case 'F':
@@ -182,7 +182,7 @@ Date.prototype.formatOne = function(format){
 		case 'y':
 			return this.getFullYear().toString().substr(2);
 		case 'g':
-			var g = this.getHours();
+			const g = this.getHours();
 			if(g > 12){
 				return g - 12;
 			}else if(g === 0){
@@ -204,12 +204,14 @@ Date.prototype.formatOne = function(format){
 };
 /**
  * Return date formatted by given format (PHP style formats).
- * @param format
+ * @param {string} format
  * @returns {string}
  */
 Date.prototype.format = function(format){
-	var cache = {}, result = "", cur;
-	for(var i = 0; i < format.length; i++){
+	const cache = {};
+	let result = "",
+		cur;
+	for(let i = 0; i < format.length; i++){
 		if(format[i] in cache){
 			cur = cache[format[i]];
 		}else{
@@ -233,4 +235,112 @@ Date.prototype.clone = function(){
  */
 Date.prototype.isValid = function(){
 	return !isNaN(this.getTime());
+};
+/**
+ * Parses a date string according to a specified format
+ *
+ * @param {string} format - The format that the passed in string should be in.
+ * @param {string} date - String representing the date
+ * @returns {Date}
+ */
+Date.prototype.createFromFormat = function(format, date){
+	for(let i = 0; i < format.length; i++){
+		let match = null;
+		switch(format[i]){
+			case 'd':
+			case 'j':
+				match = date.match(
+					format[i] === 'd' ? /^[0-9]{2}/ : /^[0-9]{1,2}/
+				);
+				if(match !== null){
+					match = match[0];
+					if(match > 0 && match < 32){
+						this.setDate(parseInt(match));
+					}else{
+						match = null;
+					}
+				}
+				break;
+			case 'F':
+			case 'M':
+				const array = format[i] === 'F' ? this.monthNames : this.monthShortNames;
+				for(let m = 0; m < array.length; m++){
+					match = date.match(new RegExp("^" + array[m]));
+					if(match !== null){
+						match = match[0];
+						this.setMonth(m);
+						break;
+					}
+				}
+				break;
+			case 'm':
+			case 'n':
+				match = date.match(
+					format[i] === 'm' ? /^[0-9]{2}/ : /^[0-9]{1,2}/
+				);
+				if(match !== null){
+					match = match[0];
+					if(match > 0 && match < 13){
+						this.setMonth(match - 1);
+					}else{
+						match = null;
+					}
+				}
+				break;
+			case 'Y':
+			case 'y':
+				match = date.match(
+					format[i] === 'Y' ? /^[0-9]{4}/ : /^[0-9]{2}/
+				);
+				if(match !== null){
+					match = match[0];
+					this.setFullYear(parseInt(format[i] === 'Y' ? match : '20' + match));
+				}
+				break;
+			case 'g':
+			case 'G':
+			case 'h':
+			case 'H':
+				match = date.match(format[i] === 'h' || format[i] === 'H' ? /^[0-9]{2}/ : /^[0-9]{1,2}/);
+				if(match !== null){
+					match = match[0];
+					if(
+						match >= 0
+						&& (
+							((format[i] === 'g' || format[i] === 'h') && match < 13)
+							|| ((format[i] === 'G' || format[i] === 'H') && match < 24)
+						)
+					){
+						this.setHours(parseInt(match));
+					}else{
+						match = null;
+					}
+				}
+				break;
+			case 'i':
+			case 's':
+				match = date.match(/^[0-9]{2}/);
+				if(match !== null){
+					match = match[0];
+					if(match > 0 && match < 60){
+						if(format[i] === 'i'){
+							this.setMinutes(parseInt(match));
+						}else{
+							this.setSeconds(parseInt(match));
+						}
+					}
+				}
+				break;
+			default:
+				match = format[i];
+				break;
+		}
+		if(match === null){
+			// noinspection JSCheckFunctionSignatures
+			this.setTime('a'); // make it an invalid date
+			break;
+		}
+		date = date.replace(match, '');
+	}
+	return this;
 };

@@ -1,6 +1,6 @@
 describe('Date tests', function(){
 	describe('Date format', function(){
-		var date = new Date('2016-08-07 15:01:12'),
+		const date = new Date('2016-08-07 15:01:12'),
 			testData = {
 				d: '07',
 				D: 'Nd',
@@ -24,7 +24,7 @@ describe('Date tests', function(){
 				i: '01',
 				s: '12'
 			};
-		for(var k in testData){
+		for(let k in testData){
 			if(testData.hasOwnProperty(k)){
 				(function(t){
 					it('Testing with ' + k + ': ' + testData[t], function(){
@@ -35,7 +35,7 @@ describe('Date tests', function(){
 		}
 	});
 	describe('Date sub', function(){
-		var date;
+		let date;
 		beforeEach(function(){
 			date = new Date('2016-08-07 15:01:12');
 		});
@@ -67,7 +67,7 @@ describe('Date tests', function(){
 		});
 	});
 	describe('Date add', function(){
-		var date;
+		let date;
 		beforeEach(function(){
 			date = new Date('2016-08-07 15:01:12');
 		});
@@ -100,19 +100,56 @@ describe('Date tests', function(){
 	});
 	describe("Date clone", function(){
 		it("Should create another instance of Date", function(){
-			var date = new Date();
+			const date = new Date();
 			expect(date.clone()).toEqual(date);
 			expect(date.clone() === date).toBeFalsy();
 		});
 	});
 	describe("IsValid", function(){
 		it("Should be a valid instance of Date", function(){
-			var date = new Date();
+			const date = new Date();
 			expect(date.isValid()).toBeTruthy();
 		});
 		it("Should be an invalid instance of Date", function(){
-			var date = new Date("123");
+			const date = new Date("123");
 			expect(date.isValid()).toBeFalsy();
-		})
+		});
+	});
+	describe('createFromFormat', function(){
+		const date = new Date(),
+			invalidDate = (new Date('0000-00-00')).format('Y-m-d H:i:s'),
+			testData = [
+				[['d', 'a'], invalidDate],
+				[['d', '12'], date.format('Y-m-12 H:i:s')],
+				[['j', '1'], date.format('Y-m-01 H:i:s')],
+				[['F', 'Wrzesień'], date.format('Y-09-d H:i:s')],
+				[['M', 'Wrz'], date.format('Y-09-d H:i:s')],
+				[['m', '12'], date.format('Y-12-d H:i:s')],
+				[['n', '1'], date.format('Y-01-d H:i:s')],
+				[['n', '14'], invalidDate],
+				[['Y', '1999'], date.format('1999-m-d H:i:s')],
+				[['y', '99'], date.format('2099-m-d H:i:s')],
+				[['g', '1'], date.format('Y-m-d 01:i:s')],
+				[['g', '23'], invalidDate],
+				[['G', '23'], date.format('Y-m-d 23:i:s')],
+				[['h', '01'], date.format('Y-m-d 01:i:s')],
+				[['h', '23'], invalidDate],
+				[['H', '23'], date.format('Y-m-d 23:i:s')],
+				[['i', '09'], date.format('Y-m-d H:09:s')],
+				[['s', '09'], date.format('Y-m-d H:i:09')],
+				[['j F Y', '3 Listopad 2017'], date.format('2017-11-03 H:i:s')],
+				[['H:i:s j F Y', '12:59:03 4 Listopad 2017'], date.format('2017-11-04 12:59:03')],
+			];
+		for(let k in testData){
+			if(testData.hasOwnProperty(k)){
+				(function(t){
+					it('Testing with: ' + testData[t], function(){
+						expect(date.clone().createFromFormat(testData[t][0][0], testData[t][0][1])
+							.format('Y-m-d H:i:s'))
+							.toEqual(testData[t][1]);
+					});
+				})(k);
+			}
+		}
 	});
 });
