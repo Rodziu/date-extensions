@@ -1,6 +1,6 @@
 {
   "name": "date-extensions",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "JavaScript Date extensions.",
   "main": "dist/date-extensions.js",
   "repository": "git+ssh://git@bitbucket.org/Rodziu/date-extensions.git",
@@ -10,7 +10,7 @@
   "devDependencies": {
     "grunt": "^1.0.1",
     "grunt-contrib-copy": "^1.0.0",
-    "grunt-contrib-uglify-es": "^2.0.0",
+    "grunt-contrib-uglify-es": "^3.3.0",
     "grunt-karma": "^2.0.0",
     "jasmine": "^2.4.1",
     "karma": "^1.2.0",
