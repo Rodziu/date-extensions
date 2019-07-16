@@ -1,20 +1,23 @@
 {
   "name": "date-extensions",
-  "version": "1.1.0",
-  "description": "JavaScript Date extensions.",
-  "main": "dist/date-extensions.js",
-  "repository": "git+ssh://git@bitbucket.org/Rodziu/date-extensions.git",
+  "version": "2.0.0",
+  "description": "JavaScript DateExtended.",
+  "main": "dist/date-extended.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Rodziu/date-extensions"
+  },
   "author": "Mateusz Rohde <mateusz.rohde@gmail.com>",
   "license": "MIT",
-  "homepage": "https://bitbucket.org/Rodziu/date-extensions#readme",
+  "homepage": "https://mateuszrohde.pl/repository/date-extensions",
   "devDependencies": {
-    "grunt": "^1.0.1",
-    "grunt-contrib-copy": "^1.0.0",
-    "grunt-contrib-uglify-es": "^3.3.0",
-    "grunt-karma": "^2.0.0",
-    "jasmine": "^2.4.1",
-    "karma": "^1.2.0",
-    "karma-firefox-launcher": "^1.0.0",
-    "karma-jasmine": "^1.0.2"
+    "gulp": "^4.0.0",
+    "gulp-eslint": "^5.0.0",
+    "gulp-rename": "^1.4.0",
+    "gulp-sourcemaps": "^2.6.4",
+    "gulp-uglify-es": "^1.0.4",
+    "karma": "^4.1.0",
+    "karma-firefox-launcher": "^1.1.0",
+    "karma-jasmine": "^2.0.1"
   }
 }
