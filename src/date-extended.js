@@ -461,7 +461,7 @@ const DateExtended = (function(){
 		if(!(locale in locales)){
 			throw new Error(`Locale ${locale} was not defined!`);
 		}
-		return locales[locale][dataKey];
+		return locales[locale][dataKey].slice(0);
 	}
 
 	return DateExtended;

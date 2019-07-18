@@ -19,6 +19,11 @@ describe('Date tests', function(){
 			expect(DateExtended.getDayShortNames())
 				.toEqual(['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']);
 		});
+
+		it('should return a copy of array', function(){
+			DateExtended.getMonthNames().splice(0, 3);
+			expect(DateExtended.getMonthNames()).toEqual(['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']);
+		})
 	});
 
 	describe('locale', function(){
