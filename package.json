@@ -11,6 +11,7 @@
   "license": "MIT",
   "homepage": "https://mateuszrohde.pl/repository/date-extensions",
   "devDependencies": {
+    "eslint-utils": "^1.4.1",
     "gulp": "^4.0.0",
     "gulp-eslint": "^5.0.0",
     "gulp-rename": "^1.4.0",
