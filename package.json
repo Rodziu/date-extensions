@@ -3,6 +3,9 @@
   "version": "2.0.2",
   "description": "JavaScript DateExtended.",
   "main": "dist/date-extended.js",
+  "scripts": {
+    "watch": "gulp watch"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/Rodziu/date-extensions"

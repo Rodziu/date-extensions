@@ -35,6 +35,15 @@
 			.pipe(gulp.dest('dist/i18n'));
 	});
 
+	gulp.task('watch', function() {
+		[
+			['src/date-extended.js', 'js'],
+			['src/i18n/*.js', 'i18n']
+		].forEach(([src, task]) => {
+			gulp.watch(src, {}, gulp.series(task));
+		});
+	});
+
 	//
 	exports.default = gulp.series('js', 'i18n');
 }();
