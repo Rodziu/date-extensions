@@ -4,7 +4,7 @@
  * License: MIT
  */
 // eslint-disable-next-line no-unused-vars
-const DateExtended = (function() {
+window.DateExtended = (function() {
     'use strict';
     const locales = {
         'en-us': {
