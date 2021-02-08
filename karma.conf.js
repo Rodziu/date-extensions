@@ -15,7 +15,7 @@ module.exports = function(config){
 
 		// list of files / patterns to load in the browser
 		files: [
-			'src/date-extended.js',
+			'dist/date-extended.js',
 			'tests/*.js'
 		],
 
