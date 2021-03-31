@@ -127,7 +127,9 @@ export default class DateExtended extends Date {
                         match = date.match(new RegExp('^' + array[m]));
                         if (match !== null) {
                             match = match[0];
-                            result.setMonth(m);
+                            console.log(m);
+                            result.setMonthSafely(m);
+                            console.log(result);
                             break;
                         }
                     }
@@ -141,7 +143,7 @@ export default class DateExtended extends Date {
                     if (match !== null) {
                         match = match[0];
                         if (match > 0 && match < 13) {
-                            result.setMonth(match - 1);
+                            result.setMonthSafely(match - 1);
                         } else {
                             match = null;
                         }
@@ -246,6 +248,18 @@ export default class DateExtended extends Date {
         return _datePad(this.getMonth() + 1);
     }
 
+    setMonthSafely(month: number): number {
+        const clone = this.clone();
+        clone.setDate(1);
+        clone.setMonth(month);
+        const lastDay = parseInt(clone.format('t'));
+        if (lastDay < this.getDate()) {
+            this.setDate(lastDay);
+        }
+        this.setMonth(month);
+        return this.getTime();
+    }
+
     /**
      * Subtract a number (amount) of `type` interval from date.
      */
@@ -258,7 +272,7 @@ export default class DateExtended extends Date {
                 this.setDate(this.getDate() - (amount * 7));
                 break;
             case 'month':
-                this.setMonth(this.getMonth() - amount);
+                this.setMonthSafely(this.getMonth() - amount);
                 break;
             case 'year':
                 this.setFullYear(this.getFullYear() - amount);

@@ -35,6 +35,13 @@ _date_extended__WEBPACK_IMPORTED_MODULE_0__.default.addLocale('hi', {
 /***/ })
 
 },
-0,[["./.build/i18n/hi.js","DateExtended"]]]).default;
+/******/ __webpack_require__ => { // webpackRuntimeModules
+/******/ "use strict";
+/******/ 
+/******/ var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
+/******/ var __webpack_exports__ = (__webpack_exec__("./.build/i18n/hi.js"));
+/******/ __webpack_exports__ = __webpack_exports__.default;
+/******/ }
+]);
 });
 //# sourceMappingURL=hi.js.map

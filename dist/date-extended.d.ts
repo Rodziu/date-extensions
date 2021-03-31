@@ -57,6 +57,7 @@ export default class DateExtended extends Date {
      * Get month number in year (starting from 1).
      */
     getRealMonth(): string;
+    setMonthSafely(month: number): number;
     /**
      * Subtract a number (amount) of `type` interval from date.
      */

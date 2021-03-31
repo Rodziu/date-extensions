@@ -66,8 +66,8 @@ describe('Date tests', function() {
                 [['d', 'a'], invalidDate],
                 [['d', '12'], date.format('Y-m-12 H:i:s')],
                 [['j', '1'], date.format('Y-m-01 H:i:s')],
-                [['F', 'September'], date.format('Y-09-d H:i:s')],
-                [['M', 'Sep'], date.format('Y-09-d H:i:s')],
+                [['F j', 'September 1'], date.format('Y-09-01 H:i:s')],
+                [['M j', 'Sep 1'], date.format('Y-09-01 H:i:s')],
                 [['m', '12'], date.format('Y-12-d H:i:s')],
                 [['n', '1'], date.format('Y-01-d H:i:s')],
                 [['n', '14'], invalidDate],
@@ -123,6 +123,9 @@ describe('Date tests', function() {
         it('Should subtract 24 seconds from date', function() {
             expect(date.sub(24, 'second').format('Y-m-d H:i:s')).toBe('2016-08-07 15:00:48');
         });
+        it('should properly change months', function() {
+            expect((new DateExtended('2021-03-31')).sub(1, 'month').format('Y-m-d')).toBe('2021-02-28');
+        });
         it('Should throw an exception', function() {
             expect(function() {
                 date.sub(1, '');
@@ -155,6 +158,9 @@ describe('Date tests', function() {
         });
         it('Should add 24 seconds to date', function() {
             expect(date.add(24, 'second').format('Y-m-d H:i:s')).toBe('2016-08-07 15:01:36');
+        });
+        it('should properly change months', function() {
+            expect((new DateExtended('2021-03-31')).add(1, 'month').format('Y-m-d')).toBe('2021-04-30');
         });
         it('Should throw an exception', function() {
             expect(function() {

@@ -1,8 +1,3 @@
-/*
- * AngularJS TableTools Plugin
- *  Copyright (c) 2016-2021 Rodziu <mateusz.rohde@gmail.com>
- *  License: MIT
- */
 !function() {
     'use strict';
     const gulp = require('gulp'),
