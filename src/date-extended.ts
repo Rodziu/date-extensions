@@ -127,9 +127,7 @@ export default class DateExtended extends Date {
                         match = date.match(new RegExp('^' + array[m]));
                         if (match !== null) {
                             match = match[0];
-                            console.log(m);
                             result.setMonthSafely(m);
-                            console.log(result);
                             break;
                         }
                     }

@@ -35,13 +35,6 @@ _date_extended__WEBPACK_IMPORTED_MODULE_0__.default.addLocale('fa', {
 /***/ })
 
 },
-/******/ __webpack_require__ => { // webpackRuntimeModules
-/******/ "use strict";
-/******/ 
-/******/ var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-/******/ var __webpack_exports__ = (__webpack_exec__("./.build/i18n/fa.js"));
-/******/ __webpack_exports__ = __webpack_exports__.default;
-/******/ }
-]);
+0,[["./.build/i18n/fa.js","DateExtended"]]]).default;
 });
 //# sourceMappingURL=fa.js.map

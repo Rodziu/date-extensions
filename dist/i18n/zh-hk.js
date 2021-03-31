@@ -35,13 +35,6 @@ _date_extended__WEBPACK_IMPORTED_MODULE_0__.default.addLocale('zh-hk', {
 /***/ })
 
 },
-/******/ __webpack_require__ => { // webpackRuntimeModules
-/******/ "use strict";
-/******/ 
-/******/ var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-/******/ var __webpack_exports__ = (__webpack_exec__("./.build/i18n/zh-hk.js"));
-/******/ __webpack_exports__ = __webpack_exports__.default;
-/******/ }
-]);
+0,[["./.build/i18n/zh-hk.js","DateExtended"]]]).default;
 });
 //# sourceMappingURL=zh-hk.js.map
