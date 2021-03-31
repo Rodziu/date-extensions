@@ -1,6 +1,6 @@
 {
   "name": "date-extensions",
-  "version": "3.0.0",
+  "version": "3.0.2",
   "description": "JavaScript DateExtended.",
   "main": "dist/date-extended.js",
   "types": "dist/date-extended.d.ts",
