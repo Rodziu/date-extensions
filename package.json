@@ -24,7 +24,7 @@
     "gulp-eslint": "^6.0.0",
     "gulp-sourcemaps": "^3.0.0",
     "gulp-typescript": "^5.0.1",
-    "karma": "^4.1.0",
+    "karma": "^6.3.14",
     "karma-firefox-launcher": "^1.1.0",
     "karma-jasmine": "^2.0.1",
     "source-map-loader": "^1.0.0",
